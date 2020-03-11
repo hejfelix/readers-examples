@@ -12,17 +12,16 @@ object MtlBusinessLogicApp extends IOApp {
     AwsConfiguration("access_key_id", "secret_access_key")
   )
 
-  implicit def hasAwsConfig[F[_]: Applicative: Functor: ApplicativeAsk[*[_], Configuration]]
-      : ApplicativeAsk[F, AwsConfiguration] =
+  implicit def hasAwsConfig[F[_]: Functor: ApplicativeAsk[*[_], Configuration]]: ApplicativeAsk[F, AwsConfiguration] =
     new DefaultApplicativeAsk[F, AwsConfiguration] {
-      val applicative: Applicative[F] = Applicative[F]
+      val applicative: Applicative[F] = ApplicativeAsk[F, Configuration].applicative
       def ask: F[AwsConfiguration]    = ApplicativeAsk[F, Configuration].ask.map(_.awsConfiguration)
     }
 
-  implicit def hasDatabaseConfig[F[_]: Applicative: Functor: ApplicativeAsk[*[_], Configuration]]
+  implicit def hasDatabaseConfig[F[_]: Functor: ApplicativeAsk[*[_], Configuration]]
       : ApplicativeAsk[F, DatabaseConfiguration] =
     new DefaultApplicativeAsk[F, DatabaseConfiguration] {
-      val applicative: Applicative[F]   = Applicative[F]
+      val applicative: Applicative[F]   = ApplicativeAsk[F, Configuration].applicative
       def ask: F[DatabaseConfiguration] = ApplicativeAsk[F, Configuration].ask.map(_.dbConfiguration)
     }
 
