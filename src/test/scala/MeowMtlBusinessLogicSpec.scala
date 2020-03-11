@@ -1,10 +1,7 @@
-import cats.Monad
+import cats.effect.IO
 import cats.effect.concurrent.Ref
-import cats.effect.{ExitCode, IO, IOApp, Sync}
-import cats.mtl.ApplicativeAsk
-import cats.implicits._
-import com.olegpy.meow.hierarchy._
 import com.olegpy.meow.effects._
+import com.olegpy.meow.hierarchy._
 
 class MeowMtlBusinessLogicSpec extends org.specs2.mutable.Specification {
 

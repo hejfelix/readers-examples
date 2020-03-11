@@ -7,14 +7,13 @@ object BusinessLogicApp extends App {
 
   val businessLogic = new BusinessLogic(conf)
 
-  val csv = businessLogic.downloadExcelSheets(1337)
+  val csv      = businessLogic.downloadExcelSheets(1337)
   val crunched = businessLogic.crunchNumbers(csv)
   businessLogic.storeResult(crunched)
 
 }
 
 class BusinessLogic(configuration: Configuration) {
-
 
   def downloadExcelSheets(versionNumber: Int): String = {
     println(
