@@ -1,3 +1,4 @@
+import ReaderBusinessLogic.crunchNumbers
 import cats.data.ReaderT
 import cats.effect.{ExitCode, IO, IOApp}
 
@@ -12,8 +13,7 @@ object ReaderBusinessLogicApp extends IOApp {
 
   val appLogic: Configured[ExitCode] = for {
     csv <- downloadExcelSheets(versionNumber = 1337)
-    crunched = crunchNumbers(csv)
-    _ <- storeResult(crunched)
+    _   <- storeResult(crunchNumbers(csv))
   } yield ExitCode.Success
 
   override def run(args: List[String]): IO[ExitCode] = appLogic.run(conf)

@@ -1,3 +1,4 @@
+import MeowMtlBusinessLogic.crunchNumbers
 import cats.Monad
 import cats.effect.concurrent.Ref
 import cats.effect.{ExitCode, IO, IOApp, Sync}
@@ -20,11 +21,10 @@ object MeowMtlBusinessLogicApp extends IOApp {
     } yield result
 
   import MeowMtlBusinessLogic._
-  def appLogic[F[_]: Sync: ApplicativeAsk[*[_], Configuration]] =
+  def appLogic[F[_]: Sync: ApplicativeAsk[*[_], Configuration]]: F[ExitCode] =
     for {
       csv <- downloadExcelSheets[F](versionNumber = 1337)
-      crunched = MeowMtlBusinessLogic.crunchNumbers(csv)
-      _ <- storeResult[F](crunched)
+      _   <- storeResult[F](crunchNumbers(csv))
     } yield ExitCode.Success
 
   override def run(args: List[String]): IO[ExitCode] = withEnv
