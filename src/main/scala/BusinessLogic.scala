@@ -16,9 +16,7 @@ object BusinessLogicApp extends App {
 class BusinessLogic(configuration: Configuration) {
 
   def downloadExcelSheets(versionNumber: Int): String = {
-    println(
-      s"Downloading excel sheets (using aws conf: ${configuration.awsConfiguration})"
-    )
+    println(s"Downloading excel sheets (using aws conf: ${configuration.awsConfiguration})")
     "this, is, csv, data"
   }
 
@@ -28,8 +26,6 @@ class BusinessLogic(configuration: Configuration) {
   }
 
   def storeResult(crunchedNumbers: Double): Unit =
-    println(
-      s"Inserting numbers in database (using database conf: ${configuration.dbConfiguration})"
-    )
+    println(s"Inserting numbers in database (using database conf: ${configuration.dbConfiguration})")
 
 }
