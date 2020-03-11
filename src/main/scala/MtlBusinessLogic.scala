@@ -1,12 +1,13 @@
 import MtlBusinessLogic._
-import cats.data.ReaderT
 import cats._
+import cats.data.ReaderT
 import cats.effect._
+import cats.implicits._
 import cats.mtl._
 import cats.mtl.implicits._
-import cats.implicits._
 
 object MtlBusinessLogicApp extends IOApp {
+
   val config = Configuration(
     DatabaseConfiguration("jdbc://....."),
     AwsConfiguration("access_key_id", "secret_access_key")

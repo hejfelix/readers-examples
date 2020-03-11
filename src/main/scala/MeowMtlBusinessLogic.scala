@@ -19,6 +19,8 @@ object MeowMtlBusinessLogicApp extends IOApp {
       _   <- storeResult[F](crunchNumbers(csv))
     } yield ExitCode.Success
 
-  override def run(args: List[String]): IO[ExitCode] = program[ReaderT[IO, Configuration, *]].run(config)
+  override def run(args: List[String]): IO[ExitCode] =
+    program[ReaderT[IO, Configuration, *]]
+      .run(config)
 
 }

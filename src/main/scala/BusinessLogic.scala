@@ -20,10 +20,7 @@ class BusinessLogic(configuration: Configuration) {
     "this, is, csv, data"
   }
 
-  def crunchNumbers(csv: String): Double = {
-    println(s"Crunching numbers: ${csv}")
-    csv.count(_ == ',').toDouble
-  }
+  def crunchNumbers(csv: String): Double = csv.count(_ == ',').toDouble
 
   def storeResult(crunchedNumbers: Double): Unit =
     println(s"Inserting numbers in database (using database conf: ${configuration.dbConfiguration})")

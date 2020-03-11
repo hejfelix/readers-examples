@@ -1,4 +1,3 @@
-import ReaderBusinessLogic.crunchNumbers
 import cats.data.ReaderT
 import cats.effect.{ExitCode, IO, IOApp}
 
